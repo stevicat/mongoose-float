@@ -1,27 +1,23 @@
 var should = require('should');
 var mongoose = require('mongoose');
-var Float = require('../lib/index.js').initType(mongoose);
-var Schema = mongoose.Schema;
+var lib = require('../lib/index.js');
 
-var UserSchema = Schema({
-	balance: {
-		type: Float
-	}
-});
+var Float = lib.loadType(mongoose);
+var UserSchema = mongoose.Schema({ balance: { type: Float } });
 var User = mongoose.model('User', UserSchema);
 
 describe('SchemaTypes Float', function () {
 	describe('mongoose-float', function () {
-		it('should contain initType method', function () {
+		it('should contain loadType method', function () {
 			var module = require('../lib/index.js');
-			module.should.have.ownProperty('initType');
-			module.initType.should.be.a.Function;
+			module.should.have.ownProperty('loadType');
+			module.loadType.should.be.a.Function;
 		});
 	});
 
 	describe('mongoose.Schema.Types.Float', function () {
 		before(function () {
-			var module = require('../lib/index.js').initType(mongoose);
+			require('../lib/index.js').loadType(mongoose);
 		});
 		it('mongoose.Schema.Types should contain Float type property', function () {
 			mongoose.Schema.Types.should.have.ownProperty('Float');
@@ -43,9 +39,17 @@ describe('SchemaTypes Float', function () {
 			var user = new User({ balance: -1000 });
 			user.balance.should.equal(-1000.00);
 		});
-		it('should not save all of the fractional digits, just two of them', function () {
+		it('should not save all of the fractional digits, just 2 of them (default value)', function () {
 			var user = new User({ balance: 100.111111111 });
 			user.balance.should.equal(100.11);
+		});
+		it('should not save all of the fractional digits, just 4 of them (passed argument)', function () {
+			var NewFloat = lib.loadType(mongoose, 4);
+			var ProductSchema = mongoose.Schema({ price: { type: NewFloat } });
+			var Product = mongoose.model('Product', ProductSchema);
+
+			var product = new Product({ price: 200.222222222 });
+			product.price.should.equal(200.2222);
 		});
 		it('should throw error if the value is not Number type', function () {
 			var user = new User({ balance: '1000' });
