@@ -12,7 +12,7 @@ npm install mongoose-float
 #### Basic usage
 ```javascript
 var mongoose = require('mongoose');
-var Float = require('../lib/index.js').loadType(mongoose);
+var Float = require('mongoose-float').loadType(mongoose);
 
 var UserSchema = mongoose.Schema({ balance: { type: Float } });
 var User = mongoose.model('User', UserSchema);
@@ -26,7 +26,7 @@ var user = new User({ balance: 100.111111111 });
 #### Specify the count of fractional digits
 ```javascript
 var mongoose = require('mongoose');
-var Float = require('../lib/index.js').loadType(mongoose, 4);
+var Float = require('mongoose-float').loadType(mongoose, 4);
 
 var ProductSchema = mongoose.Schema({ price: { type: Float } });
 var Product = mongoose.model('Product', ProductSchema);
