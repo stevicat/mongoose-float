@@ -26,9 +26,9 @@
   "devDependencies": {
     "mocha": "2.x.x",
     "should": "8.2.2",
-    "mongoose": "~> 4.x"
+    "mongoose": ">=4.x <=5.x"
   },
   "peerDependencies": {
-    "mongoose": "~> 4.x"
+    "mongoose": ">=4.x <=5.x"
   }
 }
