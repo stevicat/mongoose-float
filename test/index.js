@@ -2,8 +2,9 @@ var should = require('should');
 var mongoose = require('mongoose');
 var lib = require('../lib/index.js');
 
+var new_instance = new mongoose.Mongoose();
 var Float = lib.loadType(mongoose);
-var UserSchema = mongoose.Schema({ balance: { type: Float } });
+var UserSchema = new mongoose.Schema({ balance: { type: Float } });
 var User = mongoose.model('User', UserSchema);
 
 describe('SchemaTypes Float', function () {
@@ -27,6 +28,21 @@ describe('SchemaTypes Float', function () {
 		});
 		it('mongoose.Schema.Types.Float should contain cast method', function () {
 			mongoose.Schema.Types.Float.prototype.cast.should.be.a.Function;
+		});
+	});
+
+	describe('new_instance.Schema.Types.Float', function () {
+		before(function () {
+			require('../lib/index.js').loadType(new_instance);
+		});
+		it('new_instance.Schema.Types should contain Float type property', function () {
+			new_instance.Schema.Types.should.have.ownProperty('Float');
+		});
+		it('new_instance.Schema.Types.Float should contain the constructor', function () {
+			new_instance.Schema.Types.Float.should.be.a.Function;
+		});
+		it('new_instance.Schema.Types.Float should contain cast method', function () {
+			new_instance.Schema.Types.Float.prototype.cast.should.be.a.Function;
 		});
 	});
 
