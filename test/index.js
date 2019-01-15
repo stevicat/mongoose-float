@@ -14,6 +14,12 @@ describe('SchemaTypes Float', function () {
 			module.should.have.ownProperty('loadType');
 			module.loadType.should.be.a.Function;
 		});
+
+		// it('should contain _checkRequired method', function () {
+		// 	var module = require('../lib/index.js');
+		// 	module.should.have.ownProperty('_checkRequired');
+		// 	module._checkRequired.should.be.a.Function;
+		// });
 	});
 
 	describe('mongoose.Schema.Types.Float', function () {
@@ -29,6 +35,9 @@ describe('SchemaTypes Float', function () {
 		it('mongoose.Schema.Types.Float should contain cast method', function () {
 			mongoose.Schema.Types.Float.prototype.cast.should.be.a.Function;
 		});
+		it('mongoose.Schema.Types.Float should contain _checkRequired method', function () {
+			mongoose.Schema.Types.Float._checkRequired.should.be.a.Function;
+		});
 	});
 
 	describe('newInstance.Schema.Types.Float', function () {
@@ -43,6 +52,9 @@ describe('SchemaTypes Float', function () {
 		});
 		it('newInstance.Schema.Types.Float should contain cast method', function () {
 			newInstance.Schema.Types.Float.prototype.cast.should.be.a.Function;
+		});
+		it('newInstance.Schema.Types.Float should contain _checkRequired method', function () {
+			newInstance.Schema.Types.Float._checkRequired.should.be.a.Function;
 		});
 	});
 
