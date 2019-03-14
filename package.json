@@ -1,6 +1,6 @@
 {
   "name": "mongoose-float",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "This library can solve one well known problem with JavaScript Number arithmetic imprecise, when, for example, 3.3 * 3 becomes 9.899999999999999, ugly.",
   "main": "./lib/index.js",
   "scripts": {
@@ -24,8 +24,8 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "mocha": "2.x.x",
-    "should": "8.2.2",
+    "mocha": "6.0.2",
+    "should": "13.2.3",
     "mongoose": ">=4.x <=5.x"
   },
   "peerDependencies": {

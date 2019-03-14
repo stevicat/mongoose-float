@@ -79,13 +79,5 @@ describe('SchemaTypes Float', function () {
 			var product = new Product({ price: 200.222222222 });
 			product.price.should.equal(200.2222);
 		});
-		it('should throw error if the value is not Number type', function () {
-			var user = new User({ balance: '1000' });
-			user.validate(function (err) {
-				should.exist(err);
-
-				done();
-			});
-		});
 	});
 });
